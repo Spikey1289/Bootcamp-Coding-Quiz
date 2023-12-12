@@ -1,14 +1,8 @@
-function shuffle(array){
-    let index = array.length, randomIndex;
-
-    while (index > 0){
-        randomIndex = Math.floor(Math.random() * index);
-        index--;
-
-        [array[index], array[randomIndex]] = [array[randomIndex], array[index]];
-    }
-    return array;
-}
+var timeEl = document.querySelector(".timer");
+var secondsLeft;
+var questList = [];
+var answerList = [];
+var storeScores = [];
 
 var questions = {
     0: { N: 1, Q: "one", A: ["C1", "w", "w", "w"] },
@@ -23,22 +17,23 @@ var questions = {
     9: { N: 10, Q: "ten", A: ["C10", "w", "w", "w"] }
 }
 
-var timeEl = document.querySelector(".timer");
-var secondsLeft;
-var questList = [];
-var answerList = [];
+function shuffle(array){
+    let index = array.length, randomIndex;
 
-var storeScores = [];
+    while (index > 0){
+        randomIndex = Math.floor(Math.random() * index);
+        index--;
 
-function initialState(){
+        [array[index], array[randomIndex]] = [array[randomIndex], array[index]];
+    }
+    return array;
+}
+
+function initialState() {
 
 }
 
-function highScores(){
-
-}
-
-function quiz(){
+function quiz() {
     for (var i = 0; i < 10; i++) {
         questList.push(questions[i].N);
     }
@@ -57,26 +52,31 @@ function quiz(){
     }
 }
 
-function endScreen(){
+function highScores() {
 
 }
 
-function clearScores(){
-    storeScores = [];
+function endScreen() {
+
 }
 
 function Timer() {
     secondsLeft = 60;
-    var time = setInterval(function() {
+    var time = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = secondsLeft + "";
 
-        if(secondsLeft === 0) {
+        if (secondsLeft === 0) {
             // endScreen();
             clearInterval(time);
             return;
         }
     }, 1000);
 }
+
+function clearScores() {
+    storeScores = [];
+}
+
 
 Timer();
