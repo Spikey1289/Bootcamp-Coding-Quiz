@@ -1,4 +1,6 @@
 var timeEl = document.querySelector(".timer");
+var cardEl = document.querySelector(".card");
+var startBtnEl = document.querySelector("#startbtn");
 var secondsLeft;
 var questList = [];
 var answerList = [];
@@ -34,6 +36,8 @@ function initialState() {
 }
 
 function quiz() {
+    Timer();
+
     for (var i = 0; i < 10; i++) {
         questList.push(questions[i].N);
     }
@@ -77,6 +81,3 @@ function Timer() {
 function clearScores() {
     storeScores = [];
 }
-
-
-Timer();
