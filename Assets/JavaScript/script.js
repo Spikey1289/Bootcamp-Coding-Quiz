@@ -23,24 +23,10 @@ var questions = {
     9: { N: 10, Q: "ten", A: ["C10", "w", "w", "w"] }
 }
 
+var timeEl = document.querySelector(".timer");
+var secondsLeft;
 var questList = [];
 var answerList = [];
-for (var i = 0; i < 10; i++) {
-    questList.push(questions[i].N);
-}
-
-console.log(questList);
-questList = shuffle(questList);
-
-for (var i = 0; i < questList.length; i++) {
-    var objectIndex = questList[i] - 1;
-    console.log(questions[objectIndex].Q);
-    answerList = questions[objectIndex].A;
-    answerList = shuffle(answerList);
-    for (var x = 0; x < answerList.length; x++) {
-        console.log(answerList[x]);
-    }
-}
 
 var storeScores = [];
 
@@ -64,10 +50,10 @@ function quiz(){
         var objectIndex = questList[i] - 1;
         console.log(questions[objectIndex].Q);
         answerList = questions[objectIndex].A;
-        shuffle(answerList);
-        answerList.forEach((index) => {
-            console.log(answerList[index]);
-        });
+        answerList = shuffle(answerList);
+        for (var x = 0; x < answerList.length; x++) {
+            console.log(answerList[x]);
+        }
     }
 }
 
@@ -78,3 +64,19 @@ function endScreen(){
 function clearScores(){
     storeScores = [];
 }
+
+function Timer() {
+    secondsLeft = 60;
+    var time = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = secondsLeft + "";
+
+        if(secondsLeft === 0) {
+            // endScreen();
+            clearInterval(time);
+            return;
+        }
+    }, 1000);
+}
+
+Timer();
